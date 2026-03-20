@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cẩm Nang Bảo Hiểm PTICARE – PTI Quyết định 142/QĐ-PTI</title>
+<style>
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --color-bg: #ffffff;
+    --color-bg-secondary: #f5f5f4;
+    --color-bg-tertiary: #eeede8;
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #6b6b67;
+    --color-text-tertiary: #9b9b96;
+    --color-border: rgba(0,0,0,0.12);
+    --color-border-secondary: rgba(0,0,0,0.22);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    /* Info (blue) */
+    --bg-info: #e6f1fb; --text-info: #185fa5; --border-info: #85b7eb;
+    /* Success (green) */
+    --bg-success: #eaf3de; --text-success: #3b6d11; --border-success: #97c459;
+    /* Warning (amber) */
+    --bg-warning: #faeeda; --text-warning: #854f0b; --border-warning: #ef9f27;
+    /* Danger (red) */
+    --bg-danger: #fcebeb; --text-danger: #a32d2d; --border-danger: #f09595;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: #1c1c1a;
+      --color-bg-secondary: #252523;
+      --color-bg-tertiary: #2e2e2b;
+      --color-text-primary: #e8e6df;
+      --color-text-secondary: #9b9b96;
+      --color-text-tertiary: #6b6b67;
+      --color-border: rgba(255,255,255,0.1);
+      --color-border-secondary: rgba(255,255,255,0.2);
+      --bg-info: #042c53; --text-info: #85b7eb; --border-info: #185fa5;
+      --bg-success: #173404; --text-success: #97c459; --border-success: #3b6d11;
+      --bg-warning: #412402; --text-warning: #ef9f27; --border-warning: #854f0b;
+      --bg-danger: #501313; --text-danger: #f09595; --border-danger: #a32d2d;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+  }
+  .app { max-width: 720px; margin: 0 auto; }
+  .hero {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 0.5px solid var(--color-border);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .hero-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .hero-sub { font-size: 13px; color: var(--color-text-secondary); }
+  .badge {
+    display: inline-flex; align-items: center; font-size: 11px;
+    padding: 3px 8px; border-radius: 20px; font-weight: 500;
+  }
+  .badge-blue { background: var(--bg-info); color: var(--text-info); }
+  .badge-warn { background: var(--bg-warning); color: var(--text-warning); }
+  .badge-danger { background: var(--bg-danger); color: var(--text-danger); }
+  .badge-success { background: var(--bg-success); color: var(--text-success); }
+  .badge-gray { background: var(--color-bg-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border); }
+  .nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .nav-btn {
+    font-size: 12px; padding: 6px 12px; border-radius: 20px;
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-bg); color: var(--color-text-secondary);
+    cursor: pointer; font-family: var(--font-sans); transition: all .15s;
+  }
+  .nav-btn.active { background: var(--color-text-primary); color: var(--color-bg); border-color: var(--color-text-primary); }
+  .nav-btn:hover:not(.active) { background: var(--color-bg-secondary); }
+  .section { display: none; }
+  .section.active { display: block; }
+  .card {
+    background: var(--color-bg);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    margin-bottom: 10px;
+  }
+  .card-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 6px; }
+  .row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 0.5px solid var(--color-border); gap: 12px; }
+  .row:last-child { border-bottom: none; }
+  .row-label { font-size: 13px; color: var(--color-text-secondary); flex: 1; }
+  .row-val { font-size: 13px; font-weight: 500; color: var(--color-text-primary); text-align: right; max-width: 55%; }
+  .wait-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .wait-item { background: var(--color-bg-secondary); border-radius: var(--radius-md); padding: 10px; border: 0.5px solid var(--color-border); }
+  .wait-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .wait-days { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .wait-unit { font-size: 11px; color: var(--color-text-secondary); margin-left: 2px; }
+  .wait-instant { font-size: 13px; font-weight: 500; color: var(--text-success); }
+  .check-grid { display: grid; gap: 6px; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: var(--radius-md); border: 0.5px solid var(--color-border); font-size: 13px; line-height: 1.5; }
+  .check-item.yes { border-color: var(--border-success); background: var(--bg-success); }
+  .check-item.no { border-color: var(--border-danger); background: var(--bg-danger); }
+  .check-item.partial { border-color: var(--border-warning); background: var(--bg-warning); }
+  .ci { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+  .check-item.yes .ci { color: var(--text-success); }
+  .check-item.no .ci { color: var(--text-danger); }
+  .check-item.partial .ci { color: var(--text-warning); }
+  .ck-text { color: var(--color-text-primary); }
+  .ck-sub { display: block; font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+  .ex-group { margin-bottom: 8px; }
+  .ex-header {
+    font-size: 13px; font-weight: 500; color: var(--color-text-primary);
+    padding: 8px 12px; background: var(--color-bg-secondary);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border: 0.5px solid var(--color-border); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .ex-header:hover { background: var(--color-bg); }
+  .ex-body { display: none; border: 0.5px solid var(--color-border); border-top: none; border-radius: 0 0 var(--radius-md) var(--radius-md); padding: 10px 12px; background: var(--color-bg); }
+  .ex-body.open { display: block; }
+  .ex-body ul { list-style: none; padding: 0; }
+  .ex-body li { font-size: 12px; color: var(--color-text-secondary); padding: 4px 0 4px 16px; position: relative; border-bottom: 0.5px solid var(--color-border); }
+  .ex-body li:last-child { border-bottom: none; }
+  .ex-body li:before { content: "—"; position: absolute; left: 0; color: var(--color-text-tertiary); }
+  .chevron { transition: transform .2s; display: inline-block; font-size: 11px; }
+  .open .chevron { transform: rotate(180deg); }
+  .timeline { display: grid; gap: 8px; }
+  .tl-item { display: flex; gap: 12px; align-items: flex-start; }
+  .tl-dot { width: 28px; height: 28px; border-radius: 50%; background: var(--bg-info); color: var(--text-info); font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tl-body { flex: 1; padding-top: 4px; }
+  .tl-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+  .tl-sub { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .scenario-tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+  .scen-btn { font-size: 12px; padding: 5px 10px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-bg); color: var(--color-text-secondary); cursor: pointer; font-family: var(--font-sans); }
+  .scen-btn.active { background: var(--bg-info); color: var(--text-info); border-color: var(--border-info); }
+  .scenario-panel { display: none; }
+  .scenario-panel.active { display: block; }
+  .result-box { padding: 12px; border-radius: var(--radius-md); font-size: 13px; line-height: 1.6; border: 0.5px solid; margin-top: 8px; }
+  .result-yes { background: var(--bg-success); border-color: var(--border-success); color: var(--text-success); }
+  .result-no { background: var(--bg-danger); border-color: var(--border-danger); color: var(--text-danger); }
+  .result-partial { background: var(--bg-warning); border-color: var(--border-warning); color: var(--text-warning); }
+  .benefit-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .benefit-table th { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-align: left; padding: 6px 8px; border-bottom: 0.5px solid var(--color-border-secondary); }
+  .benefit-table td { padding: 8px; border-bottom: 0.5px solid var(--color-border); color: var(--color-text-primary); vertical-align: top; }
+  .benefit-table tr:last-child td { border-bottom: none; }
+  .benefit-table td:last-child { color: var(--color-text-secondary); font-size: 11px; }
+  .search-bar { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
+  .search-bar input {
+    flex: 1; min-width: 160px; font-size: 13px; padding: 8px 12px;
+    border-radius: var(--radius-md); border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-bg); color: var(--color-text-primary);
+    font-family: var(--font-sans);
+  }
+  .search-bar input:focus { outline: none; border-color: var(--color-text-secondary); }
+  .region-filter { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+  .rgn-btn { font-size: 11px; padding: 4px 10px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-bg); color: var(--color-text-secondary); cursor: pointer; font-family: var(--font-sans); }
+  .rgn-btn.active { background: var(--bg-info); color: var(--text-info); border-color: var(--border-info); }
+  .hosp-list { display: grid; gap: 6px; max-height: 520px; overflow-y: auto; }
+  .hosp-card { background: var(--color-bg-secondary); border: 0.5px solid var(--color-border); border-radius: var(--radius-md); padding: 10px 12px; }
+  .hosp-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .hosp-addr { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 6px; line-height: 1.4; }
+  .hosp-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag { font-size: 10px; padding: 2px 7px; border-radius: 20px; font-weight: 500; }
+  .tag-inp { background: var(--bg-info); color: var(--text-info); }
+  .tag-out { background: var(--bg-success); color: var(--text-success); }
+  .tag-den { background: var(--bg-warning); color: var(--text-warning); }
+  .hosp-count { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px; }
+  .excl-card { background: var(--bg-danger); border: 0.5px solid var(--border-danger); border-radius: var(--radius-md); padding: 10px 12px; margin-bottom: 6px; }
+  .excl-name { font-size: 13px; font-weight: 500; color: var(--text-danger); margin-bottom: 4px; }
+  .excl-addr { font-size: 11px; color: var(--text-danger); opacity: .8; line-height: 1.4; }
+  .excl-prov { font-size: 10px; padding: 2px 7px; border-radius: 20px; background: var(--bg-danger); border: 0.5px solid var(--border-danger); color: var(--text-danger); font-weight: 500; display: inline-block; margin-bottom: 6px; }
+  .filter-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .svc-filter { display: flex; gap: 4px; }
+  .svc-btn { font-size: 11px; padding: 4px 10px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-bg); color: var(--color-text-secondary); cursor: pointer; font-family: var(--font-sans); }
+  .svc-btn.active-inp { background: var(--bg-info); color: var(--text-info); border-color: var(--border-info); }
+  .svc-btn.active-out { background: var(--bg-success); color: var(--text-success); border-color: var(--border-success); }
+  .svc-btn.active-den { background: var(--bg-warning); color: var(--text-warning); border-color: var(--border-warning); }
+  .hotline { display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--bg-info); border-radius: var(--radius-md); margin-top: 10px; }
+  .hotline-text { font-size: 13px; color: var(--text-info); font-weight: 500; }
+  .hotline-sub { font-size: 11px; color: var(--text-info); opacity: .75; }
+  .empty { text-align: center; padding: 24px; color: var(--color-text-secondary); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="hero">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap">
+    <div>
+      <div class="hero-title">Cẩm Nang Bảo Hiểm PTICARE</div>
+      <div class="hero-sub">Bảo hiểm sức khỏe nhóm doanh nghiệp · PTI Quyết định 142/QĐ-PTI · Ban hành 31/10/2025</div>
+    </div>
+    <span class="badge badge-blue">Dành cho người được bảo hiểm</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="showTab('overview')">Tổng quan</button>
+  <button class="nav-btn" onclick="showTab('waiting')">Thời gian chờ</button>
+  <button class="nav-btn" onclick="showTab('exclusions')">Điểm loại trừ</button>
+  <button class="nav-btn" onclick="showTab('hospitals')">Cơ sở bảo lãnh</button>
+  <button class="nav-btn" onclick="showTab('excluded-hosp')">CSYT loại trừ</button>
+  <button class="nav-btn" onclick="showTab('scenarios')">Ví dụ thực tế</button>
+  <button class="nav-btn" onclick="showTab('claims')">Bồi thường</button>
+  <button class="nav-btn" onclick="showTab('checklist')">Checklist</button>
+</div>
+
+<!-- OVERVIEW -->
+<div id="tab-overview" class="section active">
+  <div class="card">
+    <div class="card-title">Đối tượng tham gia</div>
+    <div class="check-grid">
+      <div class="check-item yes"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><span class="ck-text">Nhân viên doanh nghiệp</span><span class="ck-sub">Đang làm việc tại doanh nghiệp mua bảo hiểm</span></div></div>
+      <div class="check-item yes"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><span class="ck-text">Vợ / chồng của nhân viên</span></div></div>
+      <div class="check-item yes"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><span class="ck-text">Con từ 1–18 tuổi</span><span class="ck-sub">Đến 24 tuổi nếu chưa kết hôn và còn đi học</span></div></div>
+      <div class="check-item yes"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><span class="ck-text">Cha mẹ ruột của nhân viên</span></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Độ tuổi & điều kiện</div>
+    <div class="row"><span class="row-label">Độ tuổi thông thường</span><span class="row-val">1 – 65 tuổi</span></div>
+    <div class="row"><span class="row-label">Mở rộng (quyền lợi BS09)</span><span class="row-val">Đến 75 tuổi</span></div>
+    <div class="row"><span class="row-label">Quốc tịch</span><span class="row-val">Công dân VN hoặc người nước ngoài cư trú hợp pháp</span></div>
+    <div class="row"><span class="row-label">Thời gian vắng mặt tại VN</span><span class="row-val">Không liên tiếp quá 180 ngày</span></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Bảng mã quyền lợi chính</div>
+    <table class="benefit-table">
+      <thead><tr><th>Mã</th><th>Quyền lợi</th><th>Ghi chú</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-blue">TN1</span></td><td>Tử vong / thương tật do tai nạn</td><td>100% STBH</td></tr>
+        <tr><td><span class="badge badge-blue">TN2</span></td><td>Trợ cấp ngày nghỉ điều trị tai nạn</td><td>30–365 ngày/năm</td></tr>
+        <tr><td><span class="badge badge-blue">TN3</span></td><td>Chi phí y tế do tai nạn</td><td>Chi phí thực tế</td></tr>
+        <tr><td><span class="badge badge-success">SK1</span></td><td>Nằm viện do ốm bệnh / thai sản</td><td>Viện phí, phẫu thuật, cấp cứu</td></tr>
+        <tr><td><span class="badge badge-success">SK2</span></td><td>Thai sản nội trú mở rộng</td><td>Không giới hạn phụ như SK1</td></tr>
+        <tr><td><span class="badge badge-success">SK3</span></td><td>Tử vong / thương tật do ốm bệnh</td><td>100% STBH</td></tr>
+        <tr><td><span class="badge badge-success">SK4</span></td><td>Trợ cấp nằm viện do ốm bệnh</td><td>30–365 ngày/năm</td></tr>
+        <tr><td><span class="badge badge-success">SK5</span></td><td>Điều trị ngoại trú</td><td>Khám, thuốc, xét nghiệm, VLTL</td></tr>
+        <tr><td><span class="badge badge-warn">SK6</span></td><td>Nha khoa cơ bản</td><td>≤500k/năm</td></tr>
+        <tr><td><span class="badge badge-warn">SK7</span></td><td>Khám thai định kỳ</td><td>Siêu âm, xét nghiệm thai kỳ</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- WAITING -->
+<div id="tab-waiting" class="section">
+  <div class="card">
+    <div class="card-title"><span class="badge badge-warn">Nhóm &lt; 50 nhân viên</span> hoặc tham gia tự nguyện</div>
+    <div class="wait-grid">
+      <div class="wait-item"><div class="wait-label">Tai nạn</div><div class="wait-instant">Hiệu lực ngay</div></div>
+      <div class="wait-item"><div class="wait-label">Bệnh thông thường / tử vong do bệnh</div><div><span class="wait-days">30</span><span class="wait-unit">ngày</span></div></div>
+      <div class="wait-item"><div class="wait-label">Bệnh đặc biệt & bệnh có sẵn</div><div><span class="wait-days">365</span><span class="wait-unit">ngày</span></div></div>
+      <div class="wait-item"><div class="wait-label">Biến chứng thai sản</div><div><span class="wait-days">60</span><span class="wait-unit">ngày</span></div></div>
+      <div class="wait-item"><div class="wait-label">Sinh con / tử vong do thai sản</div><div><span class="wait-days">270</span><span class="wait-unit">ngày</span></div></div>
+      <div class="wait-item"><div class="wait-label">Tử vong do bệnh đặc biệt/có sẵn</div><div><span class="wait-days">365</span><span class="wait-unit">ngày</span></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="badge badge-success">Nhóm ≥ 50 nhân viên</span> không tự nguyện, có ≥100 người thân</div>
+    <div class="wait-grid">
+      <div class="wait-item"><div class="wait-label">Tai nạn</div><div class="wait-instant">Hiệu lực ngay</div></div>
+      <div class="wait-item"><div class="wait-label">Bệnh thông thường</div><div class="wait-instant">Không có thời gian chờ</div></div>
+      <div class="wait-item"><div class="wait-label">Bệnh đặc biệt / bệnh có sẵn</div><div class="wait-instant">Không có thời gian chờ</div></div>
+      <div class="wait-item"><div class="wait-label">Tử vong do bệnh thông thường</div><div><span class="wait-days">30</span><span class="wait-unit">ngày</span></div></div>
+      <div class="wait-item" style="grid-column:span 2"><div class="wait-label">Tử vong do bệnh đặc biệt / bệnh có sẵn</div><div><span class="wait-days">365</span><span class="wait-unit">ngày</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXCLUSIONS -->
+<div id="tab-exclusions" class="section">
+  <div id="excl-thm" class="ex-group"><div class="ex-header" onclick="toggleEx('thm','excl-thm')">Thẩm mỹ & không cần thiết về y tế <span class="chevron">▾</span></div><div id="ex-thm" class="ex-body"><ul><li>Phẫu thuật thẩm mỹ, chỉnh hình, tạo hình, laser thẩm mỹ</li><li>Liệu trình chăm sóc da không vì mục đích điều trị bệnh lý</li><li>Kiểm soát cân nặng, béo phì, suy dinh dưỡng, còi xương</li><li>Khám sức khỏe tổng quát định kỳ (trừ khám thai SK7)</li></ul></div></div>
+  <div id="excl-tl" class="ex-group"><div class="ex-header" onclick="toggleEx('tl','excl-tl')">Rối loạn tâm thần & thần kinh <span class="chevron">▾</span></div><div id="ex-tl" class="ex-body"><ul><li>Rối loạn tâm thần, hành vi, chậm phát triển, tự kỷ</li><li>Rối loạn giấc ngủ, mất ngủ, suy giảm trí nhớ, stress</li><li>Rối loạn thiếu tập trung, ngủ ngáy, ngưng thở khi ngủ</li></ul></div></div>
+  <div id="excl-std" class="ex-group"><div class="ex-header" onclick="toggleEx('std','excl-std')">Bệnh lây qua đường tình dục & đại dịch <span class="chevron">▾</span></div><div id="ex-std" class="ex-body"><ul><li>HIV/AIDS và các biến chứng liên quan</li><li>Giang mai, lậu, hoa liễu, sùi mào gà, herpes sinh dục</li><li>Đại dịch theo công bố của cơ quan có thẩm quyền</li></ul></div></div>
+  <div id="excl-tn" class="ex-group"><div class="ex-header" onclick="toggleEx('tn','excl-tn')">Tai nạn chủ ý & hành vi nguy hiểm <span class="chevron">▾</span></div><div id="ex-tn" class="ex-body"><ul><li>Tự làm thương tật, tự tử (mọi trạng thái tinh thần)</li><li>Đánh nhau, ẩu đả (trừ cứu người, tự vệ chứng minh được)</li><li>Ảnh hưởng rượu/bia (cồn ≥ 10mg/100ml máu)</li><li>Ma túy, chất gây nghiện, chất kích thích</li><li>Thể thao nguy hiểm: nhảy dù, leo núi, đua mô tô, lặn &gt;20m</li></ul></div></div>
+  <div id="excl-ts" class="ex-group"><div class="ex-header" onclick="toggleEx('ts','excl-ts')">Kế hoạch hóa gia đình & sinh sản <span class="chevron">▾</span></div><div id="ex-ts" class="ex-body"><ul><li>Phá thai do nguyên nhân tâm lý / xã hội</li><li>Điều trị vô sinh, hiếm muộn, IVF</li><li>Điều trị bất lực, rối loạn chức năng sinh dục</li><li>Liệu pháp hoóc môn, điều trị tiền mãn kinh, thay đổi giới tính</li></ul></div></div>
+  <div id="excl-tb" class="ex-group"><div class="ex-header" onclick="toggleEx('tb','excl-tb')">Thiết bị hỗ trợ & thị/thính giác <span class="chevron">▾</span></div><div id="ex-tb" class="ex-body"><ul><li>Kính mắt, máy trợ thính, nạng, xe lăn, thiết bị chỉnh hình</li><li>Máy tạo nhịp tim, máy thở (trừ trong điều trị nội trú)</li><li>Điều trị tật khúc xạ: cận, viễn, loạn thị, laser mắt</li><li>Đục thủy tinh thể không do bệnh lý</li></ul></div></div>
+  <div class="card" style="margin-top:10px">
+    <div class="card-title">So sánh nhanh: Được / Không được bảo hiểm</div>
+    <div class="check-grid">
+      <div class="check-item no"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><span class="ck-text">Khám sức khỏe tổng quát định kỳ</span></div></div>
+      <div class="check-item yes"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><span class="ck-text">Khám bệnh do có triệu chứng cụ thể</span></div></div>
+      <div class="check-item no"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><span class="ck-text">Vitamin, thực phẩm chức năng (ngoại trú)</span></div></div>
+      <div class="check-item yes"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><span class="ck-text">Vitamin trong nội trú theo phác đồ điều trị</span></div></div>
+      <div class="check-item partial"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><span class="ck-text">Phẫu thuật robot</span><span class="ck-sub">Chỉ trả tương đương phẫu thuật thường hoặc tối đa 50%</span></div></div>
+      <div class="check-item partial"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><span class="ck-text">Phòng VIP / dịch vụ</span><span class="ck-sub">Chỉ trả theo mức phòng tiêu chuẩn, phần chênh tự trả</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOSPITALS -->
+<div id="tab-hospitals" class="section">
+  <div class="card">
+    <div class="card-title">Cơ sở y tế áp dụng bảo lãnh viện phí <span class="badge badge-gray" id="hosp-total-badge">190 cơ sở</span></div>
+    <div class="search-bar"><input type="text" id="hosp-search" placeholder="Tìm tên bệnh viện, địa chỉ..." oninput="filterHospitals()"></div>
+    <div style="margin-bottom:8px">
+      <div class="filter-label">Lọc theo tỉnh / thành phố</div>
+      <div class="region-filter" id="region-filter"></div>
+    </div>
+    <div style="margin-bottom:8px">
+      <div class="filter-label">Lọc theo dịch vụ bảo lãnh</div>
+      <div class="svc-filter">
+        <button class="svc-btn" id="svc-inp" onclick="toggleSvc('inp')">Nội trú</button>
+        <button class="svc-btn" id="svc-out" onclick="toggleSvc('out')">Ngoại trú</button>
+        <button class="svc-btn" id="svc-den" onclick="toggleSvc('den')">Nha khoa</button>
+      </div>
+    </div>
+    <div class="hosp-count" id="hosp-count"></div>
+    <div class="hosp-list" id="hosp-list"></div>
+    <div class="hotline">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5a2 2 0 012-2h2.28a1 1 0 01.95.68l1.1 3.3a1 1 0 01-.27 1.05L7.6 9.4a11 11 0 005 5l1.37-1.48a1 1 0 011.05-.27l3.3 1.1a1 1 0 01.68.95V17a2 2 0 01-2 2A14 14 0 013 5z" stroke="var(--text-info)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><div class="hotline-text">Kiểm tra cập nhật tại www.pti.com.vn</div><div class="hotline-sub">Danh sách có thể thay đổi — luôn xác nhận trước khi đến</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXCLUDED HOSPITALS -->
+<div id="tab-excluded-hosp" class="section">
+  <div class="card">
+    <div class="card-title">Cơ sở y tế bị loại trừ thanh toán bảo hiểm <span class="badge badge-danger">40 cơ sở</span></div>
+    <p style="margin-bottom:10px;color:var(--text-danger)">Bao gồm nhưng không giới hạn các chi nhánh liên quan. Không được bảo lãnh hoặc hoàn phí khi điều trị tại các cơ sở này.</p>
+    <div class="search-bar"><input type="text" id="excl-search" placeholder="Tìm tên phòng khám, địa chỉ..." oninput="filterExcluded()"></div>
+    <div class="region-filter" id="excl-region-filter"></div>
+    <div class="hosp-count" id="excl-count"></div>
+    <div id="excl-list"></div>
+  </div>
+</div>
+
+<!-- SCENARIOS -->
+<div id="tab-scenarios" class="section">
+  <div class="scenario-tabs">
+    <button class="scen-btn active" onclick="showScen('s1')">Nhập viện sớm</button>
+    <button class="scen-btn" onclick="showScen('s2')">Bệnh có sẵn</button>
+    <button class="scen-btn" onclick="showScen('s3')">Thai sản</button>
+    <button class="scen-btn" onclick="showScen('s4')">Tai nạn</button>
+    <button class="scen-btn" onclick="showScen('s5')">Thuốc ngoại trú</button>
+  </div>
+  <div id="scen-s1" class="scenario-panel active"><div class="card"><div class="card-title">Nhập viện 15 ngày sau khi tham gia</div><p>Chị A tham gia bảo hiểm ngày 1/1/2025. Ngày 15/1/2025 nhập viện điều trị bệnh dạ dày.</p><div class="result-box result-no"><strong>Nhóm &lt; 50 nhân viên:</strong> KHÔNG được bồi thường. Chưa hết 30 ngày chờ với bệnh thông thường.</div><div class="result-box result-yes"><strong>Nhóm ≥ 50 nhân viên (không tự nguyện):</strong> CÓ thể được bồi thường nếu bệnh không phải Bệnh Có Sẵn.</div></div></div>
+  <div id="scen-s2" class="scenario-panel"><div class="card"><div class="card-title">Biến chứng tăng huyết áp</div><p>Anh B có tiền sử tăng huyết áp từ 2022, tham gia bảo hiểm 2025. Tháng 3/2025 nhập viện vì biến chứng tim.</p><div class="result-box result-no"><strong>Kết quả: KHÔNG được bồi thường</strong><br><span style="font-size:12px;opacity:.85">3 lý do: (1) Bệnh đã có từ trước 3 năm, (2) Tăng huyết áp là Bệnh Mãn Tính, (3) Tim mạch là Bệnh Đặc Biệt — chưa hết 365 ngày chờ.</span></div></div></div>
+  <div id="scen-s3" class="scenario-panel"><div class="card"><div class="card-title">Sinh con sau 264 ngày (nhóm 40 nhân viên)</div><p>Chị D tham gia ngày 1/3/2025, sinh con ngày 20/11/2025 (264 ngày). Công ty có 40 nhân viên.</p><div class="result-box result-partial"><strong>Bồi thường theo tỷ lệ:</strong> 264/270 × 100% quyền lợi thai sản.</div><div class="result-box result-yes"><strong>Nếu nhóm ≥ 50 nhân viên:</strong> Được bồi thường đầy đủ 100%.</div></div></div>
+  <div id="scen-s4" class="scenario-panel"><div class="card"><div class="card-title">Ngã cầu thang, gãy tay — STBH 200 triệu</div><p>Anh E trượt chân ngã, gãy tay phải. Bác sĩ kết luận thương tật vĩnh viễn bộ phận.</p><div class="result-box result-yes"><strong>Được bồi thường: 104 triệu VNĐ</strong><br><span style="font-size:12px;opacity:.85">Tai nạn hợp lệ (ngoại lực từ bên ngoài). Mất bàn tay / 5 ngón = 52% STBH. 200 triệu × 52% = 104 triệu.</span></div></div></div>
+  <div id="scen-s5" class="scenario-panel"><div class="card"><div class="card-title">Đơn thuốc cảm cúm ngoại trú</div><p>Chị C bị cảm cúm. Bác sĩ kê: kháng sinh, paracetamol, vitamin C, nước muối sinh lý. Chị mua thêm collagen.</p><div class="result-box result-yes"><strong>Được bồi thường:</strong> Kháng sinh + paracetamol (thuốc có số đăng ký lưu hành hợp lệ).</div><div class="result-box result-no"><strong>Không được bồi thường:</strong> Vitamin C, nước muối sinh lý (cần BS02), collagen (không phải thuốc theo Bộ Y tế).</div></div></div>
+</div>
+
+<!-- CLAIMS -->
+<div id="tab-claims" class="section">
+  <div class="card">
+    <div class="card-title">Thời hạn thông báo & nộp hồ sơ</div>
+    <div class="row"><span class="row-label">Tai nạn</span><span class="row-val">Thông báo 120 ngày · Nộp 12 tháng</span></div>
+    <div class="row"><span class="row-label">Nội trú / Trong ngày</span><span class="row-val">Thông báo 120 ngày · Nộp 12 tháng</span></div>
+    <div class="row"><span class="row-label">Ngoại trú</span><span class="row-val">Thông báo 120 ngày · Nộp 12 tháng</span></div>
+    <div class="row"><span class="row-label">Tử vong</span><span class="row-val">Thông báo 120 ngày · Nộp 12 tháng</span></div>
+    <p style="margin-top:10px;font-size:12px;color:var(--text-danger)">Nộp trễ hạn → PTI từ chối thanh toán (trừ trường hợp bất khả kháng)</p>
+  </div>
+  <div class="card">
+    <div class="card-title">Hồ sơ bồi thường cơ bản</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot">1</div><div class="tl-body"><div class="tl-title">Giấy yêu cầu trả tiền bảo hiểm</div><div class="tl-sub">Mẫu PTI, có chữ ký và đóng dấu đại diện bên mua bảo hiểm.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">2</div><div class="tl-body"><div class="tl-title">Chứng từ y tế</div><div class="tl-sub">Giấy ra viện, giấy chứng nhận phẫu thuật, bảng kê chi tiết viện phí.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">3</div><div class="tl-body"><div class="tl-title">Kết quả xét nghiệm / chẩn đoán hình ảnh</div><div class="tl-sub">Phiếu chỉ định và kết quả XQ, CT scan, xét nghiệm (nếu có).</div></div></div>
+      <div class="tl-item"><div class="tl-dot">4</div><div class="tl-body"><div class="tl-title">Sổ khám bệnh / phiếu khám</div><div class="tl-sub">Có chẩn đoán bệnh và chỉ định điều trị của bác sĩ.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">5</div><div class="tl-body"><div class="tl-title">Hóa đơn, biên lai gốc</div><div class="tl-sub">Theo quy định của Bộ Tài Chính — bắt buộc bản gốc.</div></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Bảo lãnh viện phí trực tiếp</div>
+    <p>Khi điều trị tại CSYT trong hệ thống bảo lãnh PTI, bạn không cần ứng tiền — PTI thanh toán trực tiếp với bệnh viện.</p>
+    <div class="timeline" style="margin-top:12px">
+      <div class="tl-item"><div class="tl-dot">1</div><div class="tl-body"><div class="tl-title">Xuất trình giấy tờ</div><div class="tl-sub">Thẻ bảo hiểm điện tử / App hoặc CMND/Căn cước. Dưới 15 tuổi: giấy khai sinh.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">2</div><div class="tl-body"><div class="tl-title">Đặt cọc (nếu có)</div><div class="tl-sub">Theo quy định của cơ sở y tế.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">3</div><div class="tl-body"><div class="tl-title">Ký xác nhận chi phí</div><div class="tl-sub">Ký tên xác nhận chi phí điều trị được PTI bảo lãnh.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">4</div><div class="tl-body"><div class="tl-title">Tự thanh toán phần vượt</div><div class="tl-sub">Các khoản vượt mức trách nhiệm hoặc ngoài phạm vi bảo hiểm — tự trả trước khi rời CSYT.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div id="tab-checklist" class="section">
+  <div class="card">
+    <div class="card-title">Checklist trước khi nộp hồ sơ bồi thường</div>
+    <div class="check-grid" id="checklist-items"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Khuyến nghị quan trọng</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot" style="background:var(--bg-warning);color:var(--text-warning)">!</div><div class="tl-body"><div class="tl-title">Khai báo trung thực bệnh sử</div><div class="tl-sub">Khai gian có thể bị hủy hợp đồng và không được hoàn phí.</div></div></div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--bg-success);color:var(--text-success)">✓</div><div class="tl-body"><div class="tl-title">Luôn mang thẻ bảo hiểm khi đi khám</div><div class="tl-sub">Thẻ điện tử qua App hoặc thẻ vật lý đều được chấp nhận.</div></div></div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--bg-success);color:var(--text-success)">✓</div><div class="tl-body"><div class="tl-title">Kiểm tra CSYT có trong danh sách bảo lãnh</div><div class="tl-sub">Và KHÔNG có trong danh sách CSYT loại trừ trước khi đến.</div></div></div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--bg-info);color:var(--text-info)">i</div><div class="tl-body"><div class="tl-title">Khiếu nại trong vòng 6 tháng</div><div class="tl-sub">Kể từ khi nhận thông báo quyết định bồi thường của PTI.</div></div></div>
+    </div>
+  </div>
+  <p style="font-size:11px;color:var(--color-text-tertiary);margin-top:12px;line-height:1.6">Tài liệu tóm lược từ Quy tắc bảo hiểm PTICARE ban hành theo Quyết định số 142/QĐ-PTI ngày 31/10/2025. Trong trường hợp có mâu thuẫn, Quy tắc bảo hiểm và Hợp Đồng Bảo Hiểm là văn bản có giá trị pháp lý cao nhất.</p>
+</div>
+
+</div><!-- end .app -->
+
+<script>
+const TABS=['overview','waiting','exclusions','hospitals','excluded-hosp','scenarios','claims','checklist'];
+function showTab(id){
+  TABS.forEach(t=>document.getElementById('tab-'+t)?.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',TABS[i]===id));
+  document.getElementById('tab-'+id)?.classList.add('active');
+}
+function toggleEx(id,grpId){
+  const body=document.getElementById('ex-'+id);
+  const grp=document.getElementById(grpId);
+  if(body){const open=body.classList.toggle('open');grp?.classList.toggle('open',open);}
+}
+const SCENARIOS=['s1','s2','s3','s4','s5'];
+function showScen(id){
+  SCENARIOS.forEach(s=>document.getElementById('scen-'+s)?.classList.remove('active'));
+  document.querySelectorAll('.scen-btn').forEach((b,i)=>b.classList.toggle('active',SCENARIOS[i]===id));
+  document.getElementById('scen-'+id)?.classList.add('active');
+}
+
+const HOSPITALS={"Hà Nội":[{"n":"BỆNH VIỆN VIỆT PHÁP","a":"Số 01 Phố Phương Mai, Kim Liên, Hà Nội","p":"02435771100","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN HỒNG PHÁT (TRÍ ĐỨC)","a":"219 Lê Duẩn, Hai Bà Trưng, Hà Nội","p":"02439429999","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN ĐA KHOA QUỐC TẾ VINMEC TIMES CITY","a":"458 Minh Khai, Vĩnh Tuy, Hà Nội","p":"0243 974 3556","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN ĐA KHOA QUỐC TẾ VINMEC SMART CITY","a":"Tây Mỗ, Hà Nội","p":"0919 981 658","i":true,"o":true,"d":true},{"n":"PHÒNG KHÁM VINMEC TIMES CITY","a":"458 Minh Khai, Vĩnh Tuy, Hà Nội","p":"0936 005 168","i":false,"o":true,"d":true},{"n":"PHÒNG KHÁM VINMEC OCEAN PARK","a":"Vinhomes Ocean Park, Xuân Phương, Hà Nội","p":"024 3975 6888","i":false,"o":true,"d":true},{"n":"BỆNH VIỆN HỒNG NGỌC","a":"55 Yên Ninh, Ba Đình, Hà Nội","p":"02439275568","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN ĐA KHOA MEDLATEC","a":"Hà Nội","p":"1900 56 56 56","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN ĐA KHOA QUỐC TẾ THU CÚC","a":"Hà Nội","p":"1900 558 896","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN ĐA KHOA HỒNG HÀ","a":"Hà Nội","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN 108","a":"Hà Nội","p":"069 572 566","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN ĐẠI HỌC Y HÀ NỘI","a":"Hà Nội","p":"02432752752","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN BẠCH MAI (KHOA QUỐC TẾ)","a":"Hà Nội","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN ĐA KHOA TRÀNG AN","a":"Hà Nội","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN ĐA KHOA PHƯƠNG ĐÔNG","a":"Hà Nội","p":"02432466588","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN ĐỐNG ĐA","a":"Hà Nội","p":"","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN SAINT PAUL","a":"Hà Nội","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN MẮT HÀ NỘI 2","a":"Hà Nội","p":"","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN ĐA KHOA ĐỨC GIANG","a":"Hà Nội","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN 103","a":"Hà Nội","p":"","i":true,"o":false,"d":false}],"Hồ Chí Minh":[{"n":"BỆNH VIỆN AN SINH","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN FV","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN TAI MŨI HỌNG SÀI GÒN","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":false},{"n":"PHÒNG KHÁM QUỐC TẾ SÀI GÒN Q1","a":"Quận 1, TP HCM","p":"","i":false,"o":true,"d":false},{"n":"BỆNH VIỆN VINMEC TP HCM","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN HOÀN MỸ SÀI GÒN","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN TÂM TRÍ SÀI GÒN","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN SỐ 1 TP HCM","a":"Hồ Chí Minh","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN CHỢ RẪY (KHOA QUỐC TẾ)","a":"Hồ Chí Minh","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN ĐẠI HỌC Y DƯỢC TP HCM","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":false},{"n":"PHÒNG KHÁM COLUMBIA ASIA","a":"Hồ Chí Minh","p":"","i":false,"o":true,"d":true},{"n":"BỆNH VIỆN BÌNH DÂN (KHOA QUỐC TẾ)","a":"Hồ Chí Minh","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN NHÂN DÂN 115","a":"Hồ Chí Minh","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN NAM SÀI GÒN","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN QUỐC TẾ CITY","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN MỸ ĐỨC","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN HẠNH PHÚC","a":"Hồ Chí Minh","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN THỐNG NHẤT TP HCM","a":"Hồ Chí Minh","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN NHI ĐỒNG (DỊCH VỤ)","a":"Hồ Chí Minh","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN TỪ DŨ (DỊCH VỤ)","a":"Hồ Chí Minh","p":"","i":true,"o":false,"d":false}],"Đà Nẵng":[{"n":"BỆNH VIỆN HOÀN MỸ ĐÀ NẴNG","a":"Đà Nẵng","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN VINMEC ĐÀ NẴNG","a":"Đà Nẵng","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN ĐA KHOA TỈNH ĐÀ NẴNG (DV)","a":"Đà Nẵng","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN C ĐÀ NẴNG","a":"Đà Nẵng","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN PHỤ SẢN - NHI ĐÀ NẴNG","a":"Đà Nẵng","p":"","i":true,"o":false,"d":false},{"n":"PHÒNG KHÁM OLYMPIA ĐÀ NẴNG","a":"Đà Nẵng","p":"","i":false,"o":true,"d":true}],"Cần Thơ":[{"n":"BỆNH VIỆN S.I.S CẦN THƠ","a":"Cần Thơ","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN HOÀN MỸ CỬU LONG","a":"Cần Thơ","p":"","i":true,"o":true,"d":false},{"n":"BỆNH VIỆN TRUNG ƯƠNG CẦN THƠ (DV)","a":"Cần Thơ","p":"","i":true,"o":false,"d":false}],"Đồng Nai":[{"n":"BỆNH VIỆN ĐỒNG NAI (DV)","a":"Đồng Nai","p":"","i":true,"o":false,"d":false},{"n":"BỆNH VIỆN QUỐC TẾ ĐỒNG NAI","a":"Đồng Nai","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN THỐNG NHẤT ĐỒNG NAI","a":"Đồng Nai","p":"","i":true,"o":false,"d":false}],"Hải Phòng":[{"n":"BỆNH VIỆN QUỐC TẾ HẢI PHÒNG","a":"Hải Phòng","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN VINMEC HẢI PHÒNG","a":"Hải Phòng","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN ĐA KHOA HẢI PHÒNG (DV)","a":"Hải Phòng","p":"","i":true,"o":false,"d":false}],"Khánh Hòa":[{"n":"BỆNH VIỆN QUỐC TẾ NHA TRANG","a":"Khánh Hòa","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN TỈNH KHÁNH HÒA (DV)","a":"Khánh Hòa","p":"","i":true,"o":false,"d":false}],"Quảng Ninh":[{"n":"BỆNH VIỆN VINMEC HẠ LONG","a":"Quảng Ninh","p":"","i":true,"o":true,"d":true},{"n":"BỆNH VIỆN HOÀN MỸ QUẢNG NINH","a":"Quảng Ninh","p":"","i":true,"o":true,"d":false}],"Bắc Ninh":[{"n":"BỆNH VIỆN QUỐC TẾ BẮC NINH","a":"Bắc Ninh","p":"","i":true,"o":true,"d":true}],"Thái Nguyên":[{"n":"BỆNH VIỆN TRUNG ƯƠNG THÁI NGUYÊN (DV)","a":"Thái Nguyên","p":"","i":true,"o":false,"d":false}],"Thanh Hóa":[{"n":"BỆNH VIỆN TỈNH THANH HÓA (DV)","a":"Thanh Hóa","p":"","i":true,"o":false,"d":false}],"Nghệ An":[{"n":"BỆNH VIỆN QUỐC TẾ TÂY NGUYÊN","a":"Nghệ An","p":"","i":true,"o":true,"d":false}],"Huế":[{"n":"BỆNH VIỆN TRUNG ƯƠNG HUẾ (DV)","a":"Huế","p":"","i":true,"o":false,"d":false}],"Lâm Đồng":[{"n":"BỆNH VIỆN HOÀN MỸ ĐÀ LẠT","a":"Lâm Đồng","p":"","i":true,"o":true,"d":false}],"An Giang":[{"n":"BỆNH VIỆN AN GIANG (DV)","a":"An Giang","p":"","i":true,"o":false,"d":false}],"Tây Ninh":[{"n":"BỆNH VIỆN TÂY NINH (DV)","a":"Tây Ninh","p":"","i":true,"o":false,"d":false}],"Đồng Tháp":[{"n":"BỆNH VIỆN ĐỒNG THÁP (DV)","a":"Đồng Tháp","p":"","i":true,"o":false,"d":false}],"Phú Thọ":[{"n":"BỆNH VIỆN HÙNG VƯƠNG PHÚ THỌ (DV)","a":"Phú Thọ","p":"","i":true,"o":false,"d":false}]};
+
+const EXCLUDED=[{"p":"Bình Dương","n":"PKĐK Nguyễn Trãi - Thủ Dầu Một","a":"303 Đại Lộ Bình Dương, Chánh Nghĩa, Thủ Dầu Một"},{"p":"Bình Dương","n":"PKĐK Đại Tín","a":"306 Đại lộ Bình Dương, Phú Hoà, Thủ Dầu Một"},{"p":"Cần Thơ","n":"PKĐK Thế Kỷ Mới","a":"133A Trần Hưng Đạo, Ninh Kiều, Cần Thơ"},{"p":"Đà Nẵng","n":"Nha Khoa Happy / Bác sĩ Vũ Duy Hưng","a":"26 Hàm Nghi, TP. Đà Nẵng"},{"p":"Đồng Nai","n":"PK Âu Mỹ Việt","a":"203A Phạm Văn Thuận, Tân Tiến, Biên Hòa"},{"p":"Đồng Nai","n":"Nha khoa Nam Sài Gòn","a":"141/7 Phạm Văn Thuận, Biên Hòa"},{"p":"Hà Nội","n":"Nha khoa Hòa An","a":"6 Phạm Ngọc Thạch, Đống Đa, Hà Nội"},{"p":"Hà Nội","n":"Phòng khám Nha khoa Medita","a":"Xã Đàn, Hà Nội"},{"p":"Hà Nội","n":"PKĐK Thiên Tâm","a":"212 Nguyễn Lương Bằng, Đống Đa, Hà Nội"},{"p":"Hà Nội","n":"Nha khoa Shinbi","a":"33 Trần Quốc Toản, Hoàn Kiếm, Hà Nội"},{"p":"Hà Nội","n":"PKĐK Đông Phương","a":"497 Quang Trung, Hà Đông, Hà Nội"},{"p":"Hà Nội / TP HCM","n":"Phòng khám Dr Allen","a":"1 Trung Hòa, Cầu Giấy, HN · 352 Phố Huế, HN · 138 Lý Tự Trọng, Q1, HCM"},{"p":"TP HCM","n":"Nha Khoa Cali","a":"303 Cách Mạng Tháng 8, Q.10"},{"p":"TP HCM","n":"Nha khoa Nhật Mỹ 2","a":"9 Vĩnh Hội, Q.4"},{"p":"TP HCM","n":"Nha Khoa Đakao","a":"123B Nơ Trang Long, Q.Bình Thạnh"},{"p":"TP HCM","n":"Nha khoa Việt Hưng","a":"17 Lê Văn Việt, Q.9"},{"p":"TP HCM","n":"PKĐK Elizabet / Khang Thái / Thành Thái / Hồng Cường","a":"87-89 Thành Thái, Q.12"},{"p":"TP HCM","n":"PKĐK MaYO / Hà Đô","a":"35B-35C Ba Tháng Hai, Q.10"},{"p":"TP HCM","n":"PKĐK Hoàn Cầu","a":"80-82 Châu Văn Liêm, Q.5"},{"p":"TP HCM","n":"Hệ thống PKĐK Liên Tâm","a":"67 Liên Tỉnh 5, Q.8 và các chi nhánh"},{"p":"TP HCM","n":"PKĐK Nguyễn Trãi","a":"277 Nguyễn Trãi, Q.1"},{"p":"TP HCM","n":"PKĐK Apollo / Phú Khang","a":"228-228A Trần Hưng Đạo, Q.1"},{"p":"TP HCM","n":"PKĐK Thái Bình Dương / Đinh Tiên Hoàng","a":"34-36 Đinh Tiên Hoàng, Q.1"},{"p":"TP HCM","n":"PKĐK Thế Giới","a":"648 Võ Văn Kiệt, Q.5"},{"p":"TP HCM","n":"PKĐK Thăng Long","a":"575 Sư Vạn Hạnh, Q.10"},{"p":"TP HCM","n":"PKĐK Kiều Tiên","a":"323-325 Lê Quang Định, Q.Bình Thạnh"},{"p":"TP HCM","n":"PKĐK Đại Đông / Nam Khoa Phụ Khoa Đại Đông","a":"461 Cộng Hòa, Q.Tân Bình"},{"p":"TP HCM","n":"PKĐK Hồng Bàng","a":"877-879 Hồng Bàng, Q.6"},{"p":"TP HCM","n":"PKĐK Baylor / Nam Việt","a":"202 Tô Hiến Thành, Q.10"},{"p":"TP HCM","n":"Nha khoa Tâm Đức","a":"125/2 Nguyễn Ảnh Thủ, Hóc Môn và CN Q.12"},{"p":"TP HCM","n":"PKĐK Bác Ái","a":"601B Cách Mạng Tháng 8, Q.10 và Phú Mỹ Hưng, Q.7"},{"p":"TP HCM","n":"PKĐK Hồng Phong","a":"160-162 Lê Hồng Phong, Q.5"},{"p":"TP HCM","n":"PKĐK Âu Á","a":"425 Nguyễn Văn Luông, Q.6"},{"p":"TP HCM","n":"PKĐK Đại Việt / Ba Tháng Hai","a":"1503-1509 Ba Tháng Hai, Q.11"},{"p":"TP HCM","n":"PKĐK Quốc tế","a":"221 Nguyễn Thị Minh Khai, Q.1"},{"p":"TP HCM","n":"PKĐK Thái Việt","a":"165 Nguyễn Văn Cừ, Q.5"},{"p":"TP HCM","n":"Bệnh viện Hồng Đức III","a":"32/2 Thống Nhất, Q.Gò Vấp"},{"p":"TP HCM","n":"DV Chăm sóc sức khỏe Lá Trà","a":"778/A6 Nguyễn Kiệm và các cơ sở khác"},{"p":"TP HCM","n":"Chăm sóc sức khỏe Mộc An","a":"303/16A Trần Bình Trọng, TP HCM"}];
+
+const allRegions=Object.keys(HOSPITALS);
+let activeRegion='',activeSvc='';
+function buildRegionFilter(){
+  const el=document.getElementById('region-filter');
+  el.innerHTML=`<button class="rgn-btn active" onclick="setRegion('')">Tất cả</button>`+
+    allRegions.map(r=>`<button class="rgn-btn" onclick="setRegion('${r}')">${r}</button>`).join('');
+}
+function setRegion(r){
+  activeRegion=r;
+  document.querySelectorAll('#region-filter .rgn-btn').forEach(b=>b.classList.toggle('active',b.textContent===(r||'Tất cả')));
+  filterHospitals();
+}
+function toggleSvc(s){
+  activeSvc=activeSvc===s?'':s;
+  ['inp','out','den'].forEach(x=>{
+    const btn=document.getElementById('svc-'+x);
+    if(btn) btn.className='svc-btn'+(activeSvc===x?' active-'+x:'');
+  });
+  filterHospitals();
+}
+function filterHospitals(){
+  const q=(document.getElementById('hosp-search')?.value||'').toLowerCase();
+  let results=[];
+  const regions=activeRegion?[activeRegion]:allRegions;
+  regions.forEach(r=>(HOSPITALS[r]||[]).forEach(h=>{
+    if(activeSvc==='inp'&&!h.i)return;
+    if(activeSvc==='out'&&!h.o)return;
+    if(activeSvc==='den'&&!h.d)return;
+    if(q&&!h.n.toLowerCase().includes(q)&&!h.a.toLowerCase().includes(q))return;
+    results.push({...h,region:r});
+  }));
+  const el=document.getElementById('hosp-list');
+  const cnt=document.getElementById('hosp-count');
+  if(cnt) cnt.textContent=`Hiển thị ${results.length} cơ sở y tế`;
+  if(!el) return;
+  if(!results.length){el.innerHTML='<div class="empty">Không tìm thấy cơ sở y tế phù hợp</div>';return;}
+  el.innerHTML=results.map(h=>`<div class="hosp-card"><div class="hosp-name">${h.n}</div><div class="hosp-addr">${h.a}${h.p?' · '+h.p:''}</div><div class="hosp-tags"><span class="badge badge-gray">${h.region}</span>${h.i?'<span class="tag tag-inp">Nội trú</span>':''}${h.o?'<span class="tag tag-out">Ngoại trú</span>':''}${h.d?'<span class="tag tag-den">Nha khoa</span>':''}</div></div>`).join('');
+}
+
+const exclRegions=[...new Set(EXCLUDED.map(e=>e.p))].sort();
+let exclRegion='';
+function buildExclFilter(){
+  const el=document.getElementById('excl-region-filter');
+  if(!el) return;
+  el.innerHTML=`<button class="rgn-btn active" onclick="setExclRegion('')">Tất cả</button>`+
+    exclRegions.map(r=>`<button class="rgn-btn" onclick="setExclRegion('${r}')">${r}</button>`).join('');
+  renderExcluded(EXCLUDED);
+}
+function setExclRegion(r){
+  exclRegion=r;
+  document.querySelectorAll('#excl-region-filter .rgn-btn').forEach(b=>b.classList.toggle('active',b.textContent===(r||'Tất cả')));
+  filterExcluded();
+}
+function filterExcluded(){
+  const q=(document.getElementById('excl-search')?.value||'').toLowerCase();
+  renderExcluded(EXCLUDED.filter(e=>{
+    if(exclRegion&&e.p!==exclRegion)return false;
+    if(q&&!e.n.toLowerCase().includes(q)&&!e.a.toLowerCase().includes(q))return false;
+    return true;
+  }));
+}
+function renderExcluded(results){
+  const cnt=document.getElementById('excl-count');
+  const el=document.getElementById('excl-list');
+  if(cnt) cnt.textContent=`Hiển thị ${results.length} cơ sở bị loại trừ`;
+  if(!el) return;
+  if(!results.length){el.innerHTML='<div class="empty">Không tìm thấy cơ sở phù hợp</div>';return;}
+  el.innerHTML=results.map(e=>`<div class="excl-card"><span class="excl-prov">${e.p}</span><div class="excl-name">${e.n}</div><div class="excl-addr">${e.a}</div></div>`).join('');
+}
+
+const CHECKS=[
+  {text:'Sự kiện xảy ra trong Thời Hạn Bảo Hiểm',done:false},
+  {text:'Đã hết Thời Gian Chờ áp dụng cho quyền lợi này',done:false},
+  {text:'Không thuộc danh sách điểm loại trừ',done:false},
+  {text:'CSYT có trong danh sách bảo lãnh (tab Cơ sở bảo lãnh)',done:false},
+  {text:'CSYT KHÔNG có trong danh sách loại trừ (tab CSYT loại trừ)',done:false},
+  {text:'Hồ sơ đầy đủ: Giấy yêu cầu, chứng từ y tế, hóa đơn gốc',done:false},
+  {text:'Thông báo tổn thất trong vòng 120 ngày',done:false},
+  {text:'Nộp hồ sơ đầy đủ trong vòng 12 tháng',done:false},
+];
+function renderChecklist(){
+  const el=document.getElementById('checklist-items');
+  if(!el) return;
+  el.innerHTML=CHECKS.map((c,i)=>`<div class="check-item ${c.done?'yes':''}" onclick="toggleCheck(${i})" style="cursor:pointer"><svg class="ci" viewBox="0 0 16 16" fill="none">${c.done?'<circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1"/><path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'  :'<circle cx="8" cy="8" r="7" stroke="#aaa" stroke-width="1"/>'}</svg><span class="ck-text" style="${c.done?'text-decoration:line-through;opacity:.6':''}">${c.text}</span></div>`).join('');
+}
+function toggleCheck(i){CHECKS[i].done=!CHECKS[i].done;renderChecklist();}
+
+buildRegionFilter();
+filterHospitals();
+buildExclFilter();
+renderChecklist();
+</script>
+</body>
+</html>
